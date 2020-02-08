@@ -1,24 +1,8 @@
 $resistor-body-height: 75px;
 $resistor-cup-width: 40px;
 .resistor-bg-color {
-  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#eaef81+0,e8ea77+100 */
-  background: #eaef81; /* Old browsers */
-  background: -moz-linear-gradient(
-    top,
-    #eaef81 0%,
-    #e8ea77 100%
-  ); /* FF3.6-15 */
-  background: -webkit-linear-gradient(
-    top,
-    #eaef81 0%,
-    #e8ea77 100%
-  ); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(
-    to bottom,
-    #eaef81 0%,
-    #e8ea77 100%
-  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eaef81', endColorstr='#e8ea77',GradientType=0 ); /* IE6-9 */
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#deb47d+0,ddc19d+100 */
+  background-color: #deb47d; /* Old browsers */
 }
 
 .resistor-body {
@@ -53,44 +37,70 @@ $resistor-cup-width: 40px;
   .colors {
     width: 20px;
     height: $resistor-body-height;
-    background-color: red;
-    overflow: hidden;
+    /* overflow: hidden; */
+    position: relative;
     > span {
       /*  transform: rotate(-90deg);
       display: block;
       text-align: center;
       width: $resistor-body-height; */
+      text-align: left;
       writing-mode: vertical-rl;
       text-orientation: upright;
       height: 100%;
       font-size: 0.6255rem;
+      bottom: -85px;
+      left: 3px;
+      position: absolute;
+    }
+
+    &.no-color-selected {
+      background-color: transparent;
+      border: 1px solid grey;
+      border-bottom: none;
+      border-top: none;
+      > span {
+        display: none;
+      }
+    }
+    &.black {
+      background-color: #000;
+    }
+    &.brown {
+      background-color: #9c2c2c;
+    }
+    &.red {
+      background-color: #f80909;
+    }
+    &.orange {
+      background-color: #ff8000;
     }
 
     &.tolerance.gold {
-      /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ffe647+0,ffc700+46,ffe500+86,ffff70+100 */
+      /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ffe647+0,ffc700+46,ffe500+86,f9e363+100 */
       background: #ffe647; /* Old browsers */
       background: -moz-linear-gradient(
         left,
         #ffe647 0%,
         #ffc700 46%,
         #ffe500 86%,
-        #ffff70 100%
+        #f9e363 100%
       ); /* FF3.6-15 */
       background: -webkit-linear-gradient(
         left,
         #ffe647 0%,
         #ffc700 46%,
         #ffe500 86%,
-        #ffff70 100%
+        #f9e363 100%
       ); /* Chrome10-25,Safari5.1-6 */
       background: linear-gradient(
         to right,
         #ffe647 0%,
         #ffc700 46%,
         #ffe500 86%,
-        #ffff70 100%
+        #f9e363 100%
       ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffe647', endColorstr='#ffff70',GradientType=1 ); /* IE6-9 */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffe647', endColorstr='#f9e363',GradientType=1 ); /* IE6-9 */
     }
   }
 }

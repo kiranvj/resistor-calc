@@ -1,5 +1,16 @@
 $resistor-body-height: 75px;
 $resistor-cup-width: 40px;
+$black: #000;
+$brown: #9c2c2c;
+$red: #f80909;
+$orange: #ff8000;
+$yellow: #f4f400;
+$green: #008000;
+$blue: #0080ff;
+$violet: #8000ff;
+$gray: #808080;
+$white: #ffffff;
+
 .resistor-bg-color {
   /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#deb47d+0,ddc19d+100 */
   background-color: #deb47d; /* Old browsers */
@@ -44,6 +55,7 @@ $resistor-cup-width: 40px;
       display: block;
       text-align: center;
       width: $resistor-body-height; */
+      text-transform: uppercase;
       text-align: left;
       writing-mode: vertical-rl;
       text-orientation: upright;
@@ -64,16 +76,34 @@ $resistor-cup-width: 40px;
       }
     }
     &.black {
-      background-color: #000;
+      background-color: $black;
     }
     &.brown {
-      background-color: #9c2c2c;
+      background-color: $brown;
     }
     &.red {
-      background-color: #f80909;
+      background-color: $red;
     }
     &.orange {
-      background-color: #ff8000;
+      background-color: $orange;
+    }
+    &.yellow {
+      background-color: $yellow;
+    }
+    &.green {
+      background-color: $green;
+    }
+    &.blue {
+      background-color: $blue;
+    }
+    &.violet {
+      background-color: $violet;
+    }
+    &.gray {
+      background-color: $gray;
+    }
+    &.white {
+      background-color: $white;
     }
 
     &.tolerance.gold {
@@ -134,4 +164,39 @@ $resistor-cup-width: 40px;
     #dbdbdb 100%
   ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#dbdbdb',GradientType=0 ); /* IE6-9 */
+}
+
+.color-selector {
+  .text-black {
+    color: $black;
+  }
+  .text-brown {
+    color: $brown;
+  }
+  .text-red {
+    color: $red;
+  }
+  .text-orange {
+    color: $orange;
+  }
+  .text-yellow {
+    color: $yellow;
+    text-shadow: rgb(155, 155, 155) 1px 2px;
+  }
+  .text-green {
+    color: $green;
+  }
+  .text-blue {
+    color: $blue;
+  }
+  .text-violet {
+    color: $violet;
+  }
+  .text-gray {
+    color: $gray;
+  }
+  .text-white {
+    color: $white;
+    text-shadow: rgb(155, 155, 155) 1px 2px;
+  }
 }

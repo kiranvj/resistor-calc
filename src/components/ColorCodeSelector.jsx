@@ -1,28 +1,35 @@
-import React, { useEffect } from "react";
-import { Slider } from "@material-ui/core";
+import React from "react";
+import { Slider, Hidden, Box } from "@material-ui/core";
 import { colorCodes } from "../core/constants";
 
-function ColorCodeSelector({ setColorCode }) {
+function ColorCodeSelector({ setColorCode, bandName }) {
   /*   useEffect(() => {
     
   }, []); */
   function valuetext(value) {
-    return `${value}°C`;
+    return value;
   }
   const marks = Object.entries(colorCodes).map(([key, codeInfo]) => {
     console.log(codeInfo);
-    return { label: colorCodes[key].label, value: codeInfo.value };
+    return {
+      label: (
+        <>
+          <span className={`text-${colorCodes[key].label}`}>
+            <Hidden mdDown>{colorCodes[key].label}</Hidden>
+            <Hidden mdUp>{colorCodes[key].label.charAt(0)}</Hidden>
+          </span>
+        </>
+      ),
+      value: codeInfo.value
+    };
   });
   return (
-    <div>
+    <Box pl={3} className="color-selector">
       <Slider
         defaultValue={-1}
         getAriaValueText={valuetext}
+        track={false}
         aria-labelledby="resistor-color-code-selector"
-        valueLabelDisplay="on"
-        onChange={(a, b) => {
-          console.log(a, b);
-        }}
         valueLabelFormat={(value) => {
           let label = colorCodes[value].value;
           if (value === -1) {
@@ -30,15 +37,16 @@ function ColorCodeSelector({ setColorCode }) {
           }
           return label;
         }}
-        onChangeCommitted={(_, value) => {
-          setColorCode("color1", value);
+        onChange={(_, value) => {
+          setColorCode(bandName, value);
         }}
         step={1}
         min={-1}
         max={9}
         marks={marks}
+        valueLabelDisplay="off"
       />
-    </div>
+    </Box>
   );
 }
 

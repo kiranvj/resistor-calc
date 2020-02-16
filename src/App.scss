@@ -1,7 +1,12 @@
 .text-red {
   color: #ff0000;
 }
-
+.text-gray {
+  color: gray;
+}
+.text-uppercase {
+  text-transform: uppercase;
+}
 .color-selector-section {
   .MuiSlider-markLabel {
     text-transform: uppercase;

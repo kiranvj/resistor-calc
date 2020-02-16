@@ -9,7 +9,7 @@ function ColorCodeSelector({ setColorCode, bandName }) {
   function valuetext(value) {
     return value;
   }
-  const marks = Object.entries(colorCodes).map(([key, codeInfo]) => {
+  const marks = Object.entries(colorCodes).map(([key, codeInfo], index) => {
     console.log(codeInfo);
     return {
       label: (
@@ -38,7 +38,7 @@ function ColorCodeSelector({ setColorCode, bandName }) {
           return label;
         }}
         onChange={(_, value) => {
-          setColorCode(bandName, value);
+          setColorCode(bandName, colorCodes[value].value);
         }}
         step={1}
         min={-1}

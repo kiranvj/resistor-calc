@@ -20,7 +20,7 @@ function ColorCodeSelector({ setColorCode, bandName }) {
           </span>
         </>
       ),
-      value: codeInfo.value
+      value: codeInfo.index
     };
   });
   return (

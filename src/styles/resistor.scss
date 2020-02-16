@@ -166,7 +166,8 @@ $white: #ffffff;
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#dbdbdb',GradientType=0 ); /* IE6-9 */
 }
 
-.color-selector {
+.color-selector,
+.color-selector-section {
   .text-black {
     color: $black;
   }

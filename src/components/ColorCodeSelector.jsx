@@ -1,15 +1,25 @@
 import React from "react";
 import { Slider, Hidden, Box } from "@material-ui/core";
-import { colorCodes } from "../core/constants";
+import { colorCodes, multiplerCodes } from "../core/constants";
 
-function ColorCodeSelector({ setColorCode, bandName }) {
+function ColorCodeSelector({ setColorCode, bandName, type = "color" }) {
   /*   useEffect(() => {
     
   }, []); */
+  let typeData = colorCodes;
+
+  switch (type) {
+    case "multiplier":
+      typeData = multiplerCodes;
+      break;
+
+    default:
+      typeData = colorCodes;
+  }
   function valuetext(value) {
     return value;
   }
-  const marks = Object.entries(colorCodes).map(([key, codeInfo], index) => {
+  /* const marks = Object.entries(colorCodes).map(([key, codeInfo], index) => {
     console.log(codeInfo);
     return {
       label: (
@@ -22,6 +32,21 @@ function ColorCodeSelector({ setColorCode, bandName }) {
       ),
       value: codeInfo.index
     };
+  }); */
+  const marks = typeData.map((colorItem, index) => {
+    return {
+      label: (
+        <>
+          <span className={`text-${colorItem.label}`}>
+            <Hidden mdDown>{colorItem.label}</Hidden>
+            <Hidden mdUp>
+              <b>{colorItem.label.charAt(0)}</b>
+            </Hidden>
+          </span>
+        </>
+      ),
+      value: index
+    };
   });
   return (
     <Box pl={3} className="color-selector">
@@ -30,19 +55,19 @@ function ColorCodeSelector({ setColorCode, bandName }) {
         getAriaValueText={valuetext}
         track={false}
         aria-labelledby="resistor-color-code-selector"
-        valueLabelFormat={(value) => {
-          let label = colorCodes[value].value;
-          if (value === -1) {
+        valueLabelFormat={(sliderValue) => {
+          /*  let label = colorCodes[sliderValue].label;
+          if (colorCodes[sliderValue].value === -1) {
             label = "--";
-          }
-          return label;
+          } */
+          return "label";
         }}
         onChange={(_, value) => {
-          setColorCode(bandName, colorCodes[value].value);
+          setColorCode(bandName, value);
         }}
         step={1}
-        min={-1}
-        max={9}
+        min={0}
+        max={typeData.length - 1}
         marks={marks}
         valueLabelDisplay="off"
       />

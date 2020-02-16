@@ -4,18 +4,18 @@ import { Box, Hidden } from "@material-ui/core";
 import "../styles/resistor.scss";
 import clsx from "clsx";
 import ColorCodeSelector from "./ColorCodeSelector";
-import { colorCodes, NONE } from "../core/constants";
+import { colorCodes, NONE, multiplerCodes } from "../core/constants";
 import ColorBand from "./ColorBand";
-import { formatResistorValue } from "../core/helpers";
+import { formatResistorValue, getLabel } from "../core/helpers";
 
 function Resistor() {
   const [codes, setCodes] = useState({
     band: "",
-    color1: NONE,
-    color2: NONE,
-    color3: NONE,
-    multiplier: NONE,
-    tolerance: NONE,
+    color1: 0,
+    color2: 0,
+    color3: 0,
+    multiplier: 0,
+    tolerance: 0,
     ppm: ""
   });
 
@@ -25,12 +25,15 @@ function Resistor() {
     setCodes({ ...codes, [key]: value });
   }
   function findResistorValue({ color1, color2, color3, multiplier }) {
+    //TODO: validations
     return formatResistorValue(
-      parseInt(`${color1}${color2}`) * Math.pow(10, multiplier)
+      (parseInt(`${colorCodes[color1].value}${colorCodes[color2].value}`) *
+        (multiplerCodes[multiplier].value * 100)) /
+        100
     );
   }
   useEffect(() => {
-    if (codes.color1 !== -1 && codes.color2 !== -1 && codes.multiplier !== -1) {
+    if (codes.color1 !== 0 && codes.color2 !== 0 && codes.multiplier !== 0) {
       setResistorValue(findResistorValue(codes));
     } else {
       setResistorValue("--");
@@ -80,14 +83,18 @@ function Resistor() {
             <small
               className={clsx(
                 "text-uppercase",
-                `text-${colorCodes[codes.color1].label}`
+                `text-${getLabel(codes.color1, colorCodes)}`
               )}
             >
-              {colorCodes[codes.color1].label}
+              {getLabel(codes.color1, colorCodes)}
             </small>
           </Grid>
           <Grid item xs>
-            <ColorCodeSelector setColorCode={setColorCode} bandName="color1" />
+            <ColorCodeSelector
+              setColorCode={setColorCode}
+              bandName="color1"
+              type="color"
+            />
           </Grid>
         </Grid>
 
@@ -97,10 +104,10 @@ function Resistor() {
             <small
               className={clsx(
                 "text-uppercase",
-                `text-${colorCodes[codes.color2].label}`
+                `text-${getLabel(codes.color2, colorCodes)}`
               )}
             >
-              {colorCodes[codes.color2].label}
+              {getLabel(codes.color2, colorCodes)}
             </small>
           </Grid>
           <Grid item xs>
@@ -114,16 +121,17 @@ function Resistor() {
             <small
               className={clsx(
                 "text-uppercase",
-                `text-${colorCodes[codes.multiplier].label}`
+                `text-${getLabel(codes.multiplier, multiplerCodes)}`
               )}
             >
-              {colorCodes[codes.multiplier].label}
+              {getLabel(codes.multiplier, multiplerCodes)}
             </small>
           </Grid>
           <Grid item xs>
             <ColorCodeSelector
               setColorCode={setColorCode}
               bandName="multiplier"
+              type="multiplier"
             />
           </Grid>
         </Grid>

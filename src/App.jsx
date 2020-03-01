@@ -21,19 +21,12 @@ function App() {
             <Box component="span" fontSize="1.25rem" className="text-red">
               ❤
             </Box>{" "}
-            by Kiran Paul VJ for Alfran Technology Solutions
+            by Kiran Paul VJ for{" "}
+            <a href="https://alfran.in/" title="Alfran Technology Solutions">
+              {" "}
+              Alfran Technology Solutions
+            </a>
           </div>
-          Icons made by{" "}
-          <a
-            href="https://www.flaticon.com/authors/payungkead"
-            title="Payungkead"
-          >
-            Payungkead
-          </a>{" "}
-          from{" "}
-          <a href="https://www.flaticon.com/" title="Flaticon">
-            www.flaticon.com
-          </a>
         </small>
       </Box>
     </CssBaseline>

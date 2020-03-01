@@ -1,6 +1,11 @@
 import React from "react";
 import { Grid } from "@material-ui/core";
-import { colorCodes, NONE } from "../core/constants";
+import {
+  colorCodes,
+  NONE,
+  multiplerCodes,
+  toleranceCodes
+} from "../core/constants";
 import clsx from "clsx";
 
 function ColorBand({ codes, type, band }) {
@@ -8,6 +13,10 @@ function ColorBand({ codes, type, band }) {
   let typeData = colorCodes;
   switch (type) {
     case "multiplier":
+      typeData = multiplerCodes;
+      break;
+    case "tolerance":
+      typeData = toleranceCodes;
       break;
 
     default:

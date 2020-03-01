@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Grid from "@material-ui/core/Grid";
-import { Box, Hidden } from "@material-ui/core";
+import { Box } from "@material-ui/core";
 import "../styles/resistor.scss";
 import clsx from "clsx";
 import ColorCodeSelector from "./ColorCodeSelector";
-import { colorCodes, NONE, multiplerCodes } from "../core/constants";
+import { colorCodes, multiplerCodes, toleranceCodes } from "../core/constants";
 import ColorBand from "./ColorBand";
 import { formatResistorValue, getLabel } from "../core/helpers";
 
@@ -29,11 +29,15 @@ function Resistor() {
     return formatResistorValue(
       (parseInt(`${colorCodes[color1].value}${colorCodes[color2].value}`) *
         (multiplerCodes[multiplier].value * 100)) /
-        100
+        100 /* 100/100 to round to 2 decimals */
     );
   }
   useEffect(() => {
-    if (codes.color1 !== 0 && codes.color2 !== 0 && codes.multiplier !== 0) {
+    if (
+      colorCodes[codes.color1].value !== -1 &&
+      colorCodes[codes.color2].value !== -1 &&
+      multiplerCodes[codes.multiplier].value !== -1
+    ) {
       setResistorValue(findResistorValue(codes));
     } else {
       setResistorValue("--");
@@ -44,7 +48,13 @@ function Resistor() {
       <Box my={5} textAlign="center">
         <Box my={5}>
           <Box component="span" fontSize="3em">
-            {resitorValue}Ω <span className="text-gray"> &plusmn; 10%</span>
+            {resitorValue}Ω{" "}
+            <span className="text-gray">
+              {" "}
+              &plusmn;{" "}
+              {toleranceCodes[codes.tolerance] &&
+                toleranceCodes[codes.tolerance].value}
+            </span>
           </Box>
           <Box component="div" fontSize="0.925em">
             Resistor value
@@ -63,9 +73,14 @@ function Resistor() {
 
                 <Grid item xs={4} md={6}>
                   <Box display="flex" justifyContent="flex-end">
-                    <Box className={clsx("colors tolerance", codes.multiplier)}>
+                    {/* <Box className={clsx("colors tolerance", codes.multiplier)}>
                       t1
-                    </Box>
+                    </Box> */}
+                    <ColorBand
+                      codes={codes}
+                      band="tolerance"
+                      type="tolerance"
+                    />
                   </Box>
                 </Grid>
               </Grid>
@@ -132,6 +147,27 @@ function Resistor() {
               setColorCode={setColorCode}
               bandName="multiplier"
               type="multiplier"
+            />
+          </Grid>
+        </Grid>
+
+        <Grid container>
+          <Grid item xs={3} sm={2} lg={1}>
+            <div>Tolerance</div>
+            <small
+              className={clsx(
+                "text-uppercase",
+                `text-${getLabel(codes.tolerance, toleranceCodes)}`
+              )}
+            >
+              {getLabel(codes.tolerance, toleranceCodes)}
+            </small>
+          </Grid>
+          <Grid item xs>
+            <ColorCodeSelector
+              setColorCode={setColorCode}
+              bandName="tolerance"
+              type="tolerance"
             />
           </Grid>
         </Grid>

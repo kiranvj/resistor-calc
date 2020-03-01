@@ -1,6 +1,6 @@
 import React from "react";
 import { Slider, Hidden, Box } from "@material-ui/core";
-import { colorCodes, multiplerCodes } from "../core/constants";
+import { colorCodes, multiplerCodes, toleranceCodes } from "../core/constants";
 
 function ColorCodeSelector({ setColorCode, bandName, type = "color" }) {
   /*   useEffect(() => {
@@ -11,6 +11,9 @@ function ColorCodeSelector({ setColorCode, bandName, type = "color" }) {
   switch (type) {
     case "multiplier":
       typeData = multiplerCodes;
+      break;
+    case "tolerance":
+      typeData = toleranceCodes;
       break;
 
     default:

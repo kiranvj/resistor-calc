@@ -106,31 +106,36 @@ $white: #ffffff;
       background-color: $white;
     }
 
-    &.tolerance.gold {
-      /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ffe647+0,ffc700+46,ffe500+86,f9e363+100 */
-      background: #ffe647; /* Old browsers */
-      background: -moz-linear-gradient(
-        left,
-        #ffe647 0%,
-        #ffc700 46%,
-        #ffe500 86%,
-        #f9e363 100%
-      ); /* FF3.6-15 */
-      background: -webkit-linear-gradient(
-        left,
-        #ffe647 0%,
-        #ffc700 46%,
-        #ffe500 86%,
-        #f9e363 100%
-      ); /* Chrome10-25,Safari5.1-6 */
-      background: linear-gradient(
-        to right,
-        #ffe647 0%,
-        #ffc700 46%,
-        #ffe500 86%,
-        #f9e363 100%
-      ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffe647', endColorstr='#f9e363',GradientType=1 ); /* IE6-9 */
+    &.gold {
+      // /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#f9da89+0,fccd4d+46,f8b500+47,f9d372+100 */
+      // background: #f9da89; /* Old browsers */
+      // background: -moz-linear-gradient(
+      //   left,
+      //   #f9da89 0%,
+      //   #fccd4d 46%,
+      //   #f8b500 47%,
+      //   #f9d372 100%
+      // ); /* FF3.6-15 */
+      // background: -webkit-linear-gradient(
+      //   left,
+      //   #f9da89 0%,
+      //   #fccd4d 46%,
+      //   #f8b500 47%,
+      //   #f9d372 100%
+      // ); /* Chrome10-25,Safari5.1-6 */
+      // background: linear-gradient(
+      //   to right,
+      //   #f9da89 0%,
+      //   #fccd4d 46%,
+      //   #f8b500 47%,
+      //   #f9d372 100%
+      // ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      // filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9da89', endColorstr='#f9d372',GradientType=1 ); /* IE6-9 */
+
+      background-image: url("/static/images/gold-bg.jpg");
+    }
+    &.silver {
+      background-image: url("/static/images/silver-bg.jpg");
     }
   }
 }

@@ -27,6 +27,19 @@ function App() {
               Alfran Technology Solutions
             </a>
           </div>
+          <div>
+            <a
+              href="https://www.webfreecounter.com/"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <img
+                src="https://www.webfreecounter.com/hit.php?id=gmkxapf&nd=7&style=1"
+                border="0"
+                alt="visitor counter"
+              />
+            </a>
+          </div>
         </small>
       </Box>
     </CssBaseline>

@@ -91,6 +91,10 @@ function Resistor() {
           </Grid>
         </Grid>
       </Box>
+      <Box mb={2}>
+        <b>Tip:</b>{" "}
+        <i>Move or click the slider below to select a resistor band color.</i>
+      </Box>
       <section className="color-selector-section">
         <Grid container>
           <Grid item xs={3} sm={2} lg={1}>

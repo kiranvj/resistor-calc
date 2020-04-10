@@ -4,9 +4,19 @@ import { Box } from "@material-ui/core";
 import "../styles/resistor.scss";
 import clsx from "clsx";
 import ColorCodeSelector from "./ColorCodeSelector";
-import { colorCodes, multiplerCodes, toleranceCodes } from "../core/constants";
+import {
+  colorCodes,
+  multiplerCodes,
+  toleranceCodes,
+  UNICODE_PLUS_MINUS
+} from "../core/constants";
 import ColorBand from "./ColorBand";
-import { formatResistorValue, getLabel } from "../core/helpers";
+import {
+  formatResistorValue,
+  getLabel,
+  getColorDisplayValue,
+  getCalculationDisplayDetails
+} from "../core/helpers";
 
 function Resistor() {
   const [codes, setCodes] = useState({
@@ -45,19 +55,18 @@ function Resistor() {
   }, [codes]);
   return (
     <div>
-      <Box my={5} textAlign="center">
-        <Box my={5}>
+      <Box my={2} textAlign="center">
+        <Box my={1}>
           <Box component="span" fontSize="3em">
             {resitorValue}Ω{" "}
             <span className="text-gray">
-              {" "}
-              &plusmn;{" "}
-              {toleranceCodes[codes.tolerance] &&
-                toleranceCodes[codes.tolerance].value}
+              {` ${UNICODE_PLUS_MINUS}
+               ${toleranceCodes[codes.tolerance] &&
+                 toleranceCodes[codes.tolerance].value}`}
             </span>
           </Box>
           <Box component="div" fontSize="0.925em">
-            Resistor value
+            Resistor value {getCalculationDisplayDetails(codes)}
           </Box>
         </Box>
         <Grid container spacing={0} justify="center" alignItems="center">
@@ -73,9 +82,6 @@ function Resistor() {
 
                 <Grid item xs={4} md={6}>
                   <Box display="flex" justifyContent="flex-end">
-                    {/* <Box className={clsx("colors tolerance", codes.multiplier)}>
-                      t1
-                    </Box> */}
                     <ColorBand
                       codes={codes}
                       band="tolerance"
@@ -91,7 +97,7 @@ function Resistor() {
           </Grid>
         </Grid>
       </Box>
-      <Box mb={2}>
+      <Box mt={3} mb={2}>
         <b>Tip:</b>{" "}
         <i>Move or click the slider below to select a resistor band color.</i>
       </Box>
@@ -105,7 +111,8 @@ function Resistor() {
                 `text-${getLabel(codes.color1, colorCodes)}`
               )}
             >
-              {getLabel(codes.color1, colorCodes)}
+              {getLabel(codes.color1, colorCodes)}{" "}
+              {getColorDisplayValue(codes.color1, colorCodes)}
             </small>
           </Grid>
           <Grid item xs>
@@ -126,7 +133,8 @@ function Resistor() {
                 `text-${getLabel(codes.color2, colorCodes)}`
               )}
             >
-              {getLabel(codes.color2, colorCodes)}
+              {getLabel(codes.color2, colorCodes)}{" "}
+              {getColorDisplayValue(codes.color2, colorCodes)}
             </small>
           </Grid>
           <Grid item xs>
@@ -143,7 +151,12 @@ function Resistor() {
                 `text-${getLabel(codes.multiplier, multiplerCodes)}`
               )}
             >
-              {getLabel(codes.multiplier, multiplerCodes)}
+              {getLabel(codes.multiplier, multiplerCodes)}{" "}
+              {getColorDisplayValue(
+                codes.multiplier,
+                multiplerCodes,
+                "multipler"
+              )}
             </small>
           </Grid>
           <Grid item xs>
@@ -164,7 +177,12 @@ function Resistor() {
                 `text-${getLabel(codes.tolerance, toleranceCodes)}`
               )}
             >
-              {getLabel(codes.tolerance, toleranceCodes)}
+              {getLabel(codes.tolerance, toleranceCodes)}{" "}
+              {getColorDisplayValue(
+                codes.tolerance,
+                toleranceCodes,
+                "tolerance"
+              )}
             </small>
           </Grid>
           <Grid item xs>

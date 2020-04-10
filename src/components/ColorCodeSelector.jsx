@@ -3,9 +3,6 @@ import { Slider, Hidden, Box } from "@material-ui/core";
 import { colorCodes, multiplerCodes, toleranceCodes } from "../core/constants";
 
 function ColorCodeSelector({ setColorCode, bandName, type = "color" }) {
-  /*   useEffect(() => {
-    
-  }, []); */
   let typeData = colorCodes;
 
   switch (type) {
@@ -22,20 +19,7 @@ function ColorCodeSelector({ setColorCode, bandName, type = "color" }) {
   function valuetext(value) {
     return value;
   }
-  /* const marks = Object.entries(colorCodes).map(([key, codeInfo], index) => {
-    console.log(codeInfo);
-    return {
-      label: (
-        <>
-          <span className={`text-${colorCodes[key].label}`}>
-            <Hidden mdDown>{colorCodes[key].label}</Hidden>
-            <Hidden mdUp>{colorCodes[key].label.charAt(0)}</Hidden>
-          </span>
-        </>
-      ),
-      value: codeInfo.index
-    };
-  }); */
+
   const marks = typeData.map((colorItem, index) => {
     return {
       label: (
@@ -59,10 +43,6 @@ function ColorCodeSelector({ setColorCode, bandName, type = "color" }) {
         track={false}
         aria-labelledby="resistor-color-code-selector"
         valueLabelFormat={(sliderValue) => {
-          /*  let label = colorCodes[sliderValue].label;
-          if (colorCodes[sliderValue].value === -1) {
-            label = "--";
-          } */
           return "label";
         }}
         onChange={(_, value) => {

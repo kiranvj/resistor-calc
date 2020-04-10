@@ -1,3 +1,5 @@
+export const UNICODE_PLUS_MINUS = "±";
+
 export const NONE = "none";
 const BLACK = "black";
 const BROWN = "brown";

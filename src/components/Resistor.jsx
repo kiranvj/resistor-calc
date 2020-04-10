@@ -17,18 +17,38 @@ import {
   getColorDisplayValue,
   getCalculationDisplayDetails
 } from "../core/helpers";
+import { useParams } from "react-router-dom";
 
-function Resistor() {
+function Resistor({ query, ...props }) {
+  let { id } = useParams();
+  console.log(id);
+  let urlColor1 = 0;
+  let urlColor2 = 0;
+  let urlMultiplier = 0;
+  let urltolerance = 0;
+
+  if (query === "band") {
+    let urlBandColors = id && id.split(",");
+    urlColor1 = parseInt(urlBandColors[0]);
+    urlColor2 = parseInt(urlBandColors[1]);
+    urlMultiplier = parseInt(urlBandColors[2]);
+    urltolerance = parseInt(urlBandColors[3]);
+  }
+
   const [codes, setCodes] = useState({
     band: "",
-    color1: 0,
-    color2: 0,
-    color3: 0,
-    multiplier: 0,
-    tolerance: 0,
+    color1: urlColor1 || 0,
+    color2: urlColor2 || 0,
+    color3: urlMultiplier || 0,
+    multiplier: urlMultiplier || 0,
+    tolerance: urltolerance || 0,
     ppm: ""
   });
 
+  useEffect(() => {
+    console.log(query);
+    console.log(id);
+  }, [query, id]);
   const [resitorValue, setResistorValue] = useState(0);
 
   function setColorCode(key, value) {
@@ -49,10 +69,13 @@ function Resistor() {
       multiplerCodes[codes.multiplier].value !== -1
     ) {
       setResistorValue(findResistorValue(codes));
+      console.log("updating history...");
+      window.location.hash = `/band=${codes.color1},${codes.color2}`;
     } else {
       setResistorValue("--");
+      //window.location.hash = "/";
     }
-  }, [codes]);
+  }, [codes, codes.color1]);
   return (
     <div>
       <Box my={2} textAlign="center">
@@ -120,6 +143,7 @@ function Resistor() {
               setColorCode={setColorCode}
               bandName="color1"
               type="color"
+              codes={codes}
             />
           </Grid>
         </Grid>
@@ -138,7 +162,11 @@ function Resistor() {
             </small>
           </Grid>
           <Grid item xs>
-            <ColorCodeSelector setColorCode={setColorCode} bandName="color2" />
+            <ColorCodeSelector
+              setColorCode={setColorCode}
+              bandName="color2"
+              codes={codes}
+            />
           </Grid>
         </Grid>
 
@@ -164,6 +192,7 @@ function Resistor() {
               setColorCode={setColorCode}
               bandName="multiplier"
               type="multiplier"
+              codes={codes}
             />
           </Grid>
         </Grid>
@@ -190,6 +219,7 @@ function Resistor() {
               setColorCode={setColorCode}
               bandName="tolerance"
               type="tolerance"
+              codes={codes}
             />
           </Grid>
         </Grid>

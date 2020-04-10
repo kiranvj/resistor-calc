@@ -7,7 +7,7 @@ $orange: #ff8000;
 $yellow: #f4f400;
 $green: #008000;
 $blue: #0080ff;
-$violet: #8000ff;
+$violet: #7000e0;
 $gray: #808080;
 $white: #ffffff;
 
@@ -107,31 +107,6 @@ $white: #ffffff;
     }
 
     &.gold {
-      // /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#f9da89+0,fccd4d+46,f8b500+47,f9d372+100 */
-      // background: #f9da89; /* Old browsers */
-      // background: -moz-linear-gradient(
-      //   left,
-      //   #f9da89 0%,
-      //   #fccd4d 46%,
-      //   #f8b500 47%,
-      //   #f9d372 100%
-      // ); /* FF3.6-15 */
-      // background: -webkit-linear-gradient(
-      //   left,
-      //   #f9da89 0%,
-      //   #fccd4d 46%,
-      //   #f8b500 47%,
-      //   #f9d372 100%
-      // ); /* Chrome10-25,Safari5.1-6 */
-      // background: linear-gradient(
-      //   to right,
-      //   #f9da89 0%,
-      //   #fccd4d 46%,
-      //   #f8b500 47%,
-      //   #f9d372 100%
-      // ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-      // filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9da89', endColorstr='#f9d372',GradientType=1 ); /* IE6-9 */
-
       background-image: url("/static/images/gold-bg.jpg");
     }
     &.silver {

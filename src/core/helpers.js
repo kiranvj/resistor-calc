@@ -24,7 +24,9 @@ export function formatResistorValue(value) {
 }
 
 export function getLabel(value, colorData) {
-  return colorData[value] !== 0 || colorData[value] !== undefined
+  return (colorData[value] !== 0 || colorData[value] !== undefined) &&
+    colorData[value] &&
+    colorData[value].label
     ? colorData[value].label
     : NONE;
 }
@@ -40,7 +42,7 @@ export function getColorDisplayValue(index, typeData, band = "") {
   let colorValue = NONE;
   if (band === "multipler") {
     colorValue =
-      typeData[index].value !== -1 ? (
+      typeData[index] && typeData[index].value !== -1 ? (
         <>
           - 10{" "}
           <sup>
@@ -48,11 +50,13 @@ export function getColorDisplayValue(index, typeData, band = "") {
           </sup>
         </>
       ) : null;
-  } else if (band === "tolerance") {
+  } else if (band === "tolerance" && typeData[index] && typeData[index].value) {
     colorValue = UNICODE_PLUS_MINUS + typeData[index].value;
   } else {
     colorValue =
-      typeData[index].value !== -1 ? `- ${typeData[index].value}` : null;
+      typeData[index] && typeData[index].value && typeData[index].value !== -1
+        ? `- ${typeData[index].value}`
+        : null;
   }
   return colorValue;
 }

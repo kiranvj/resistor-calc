@@ -2,7 +2,7 @@ import React from "react";
 import { Slider, Hidden, Box } from "@material-ui/core";
 import { colorCodes, multiplerCodes, toleranceCodes } from "../core/constants";
 
-function ColorCodeSelector({ setColorCode, bandName, type = "color" }) {
+function ColorCodeSelector({ setColorCode, codes, bandName, type = "color" }) {
   let typeData = colorCodes;
 
   switch (type) {
@@ -38,7 +38,7 @@ function ColorCodeSelector({ setColorCode, bandName, type = "color" }) {
   return (
     <Box pl={3} className="color-selector">
       <Slider
-        defaultValue={-1}
+        value={codes[bandName] || -1}
         getAriaValueText={valuetext}
         track={false}
         aria-labelledby="resistor-color-code-selector"

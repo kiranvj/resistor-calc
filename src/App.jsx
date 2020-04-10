@@ -3,45 +3,33 @@ import "./App.scss";
 import Header from "./components/Header";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Resistor from "./components/Resistor";
-import { Container, Box } from "@material-ui/core";
+import { Container } from "@material-ui/core";
+import Footer from "./components/Footer";
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   return (
     <CssBaseline>
-      <div className="resistor-calc-app">
-        <Header />
-        <Container>
-          <Resistor />
-        </Container>
-      </div>
-      <Box component="footer" textAlign="center" pt={5} pb={3} mt={15}>
-        <small>
-          <div>
-            Handcrafted with{" "}
-            <Box component="span" fontSize="1.25rem" className="text-red">
-              ❤
-            </Box>{" "}
-            by Kiran Paul VJ for{" "}
-            <a href="https://alfran.in/" title="Alfran Technology Solutions">
-              {" "}
-              Alfran Technology Solutions
-            </a>
-          </div>
-          <div>
-            <a
-              href="https://www.webfreecounter.com/"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <img
-                src="https://www.webfreecounter.com/hit.php?id=gmkxapf&nd=7&style=1"
-                border="0"
-                alt="visitor counter"
-              />
-            </a>
-          </div>
-        </small>
-      </Box>
+      <Router>
+        <div className="resistor-calc-app">
+          <Header />
+          <Container>
+            <Switch>
+              <Route path="/band=:id">
+                <Resistor query="band" />
+              </Route>
+              <Route path="/value=:id">
+                <Resistor query="value" />
+              </Route>
+              <Route exact path="/">
+                <Resistor />
+              </Route>
+              <Route path="/">404</Route>
+            </Switch>
+          </Container>
+        </div>
+        <Footer />
+      </Router>
     </CssBaseline>
   );
 }

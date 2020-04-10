@@ -9,7 +9,6 @@ import {
 import clsx from "clsx";
 
 function ColorBand({ codes, type, band }) {
-  //console.log("colorCodes[codes[band]]", colorCodes[codes[band]]);
   let typeData = colorCodes;
   switch (type) {
     case "multiplier":
